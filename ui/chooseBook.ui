@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>701</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>1151</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{background:#300331;
+border-radius:40;}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #fff, stop: 1 #bbb
+);
+}
+
+QPushButton:pressed {
+border-style: inset;
+background: qradialgradient(
+cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+);}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#920C7C;
+border: 2px solid white;
+border-radius:0;
+border-top-left-radius: 40;
+border-top-right-radius: 40;
+</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>1090</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: #FD5754;
+border-style: solid;
+border-color: white;
+border-width: 2px;
+border-radius: 10px;
+}
+
+QPushButton:hover {
+background: #37AED4;
+}
+
+QPushButton:pressed {
+border-style: inset;
+background: qradialgradient(
+cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>1070</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: #F9B637;
+border-style: solid;
+border-color: white;
+border-width: 2px;
+border-radius: 10px;
+}
+
+QPushButton:hover {
+background: #37AED4;
+}
+
+QPushButton:pressed {
+border-style: inset;
+background: qradialgradient(
+cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>1051</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color: #34C848;
+border-style: solid;
+border-color: white;
+border-width: 2px;
+border-radius: 10px;
+}
+
+
+QPushButton:hover {
+background: #37AED4;
+}
+
+QPushButton:pressed {
+border-style: inset;
+background: qradialgradient(
+cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>190</y>
+      <width>391</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size:45px;
+color:#920C7C;
+font-weight:bold;
+font-family:Google Sans;
+}</string>
+    </property>
+    <property name="text">
+     <string>Please select your</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>250</y>
+      <width>284</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size:40px;
+color:#920C7C;
+font-weight:bold;
+font-family:Google Sans;
+}</string>
+    </property>
+    <property name="text">
+     <string>favorite</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>-120</x>
+      <y>50</y>
+      <width>461</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/logo/img/RecSy.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>560</y>
+      <width>81</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+background:transparent;
+image: url(:/back/img/back.png);
+}
+QToolButton:hover {
+background: #920C7C;
+border: solid 1px;
+border-radius:25;
+}
+
+QToolButton:pressed {
+border-style: inset;
+background: #37AED4;}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>141</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size:45px;
+color:white;
+font-weight:bold;
+font-family:Google Sans;
+}</string>
+    </property>
+    <property name="text">
+     <string>Book</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>250</y>
+      <width>141</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+font-size:40px;
+color:white;
+font-weight:bold;
+font-family:Google Sans;
+}</string>
+    </property>
+    <property name="text">
+     <string>book!</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>350</y>
+      <width>411</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>480</y>
+      <width>221</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color: #37AED4;
+border-style: solid;
+border-color: #37AED4;
+border-width: 2px;
+border-radius: 10px;
+font-family:Google Sans;
+font-weight: bold;
+font-size:25px;
+color:#300331;
+}
+
+
+QPushButton:hover {
+background: #300331;
+color:#37AED4;
+border-color: #300331;
+}
+
+QPushButton:pressed {
+border-style: inset;
+background: qradialgradient(
+cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+);}</string>
+    </property>
+    <property name="text">
+     <string>Select</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>toolButton_4</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>pushButton_4</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../source.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -2,6 +2,18 @@
   <qresource prefix="logo">
     <file>img/RecSy.png</file>
   </qresource>
+  <qresource prefix="back">
+    <file>img/back.png</file>
+  </qresource>
+  <qresource prefix="profile">
+    <file>img/profile.png</file>
+  </qresource>
+  <qresource prefix="book">
+    <file>img/book.png</file>
+  </qresource>
+  <qresource prefix="popcorn">
+    <file>img/popcorn.png</file>
+  </qresource>
   <qresource prefix="mail">
     <file>img/mail.png</file>
   </qresource>
