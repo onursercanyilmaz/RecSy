@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="logo">
+    <file>img/RecSy.png</file>
+  </qresource>
+  <qresource prefix="mail">
+    <file>img/mail.png</file>
+  </qresource>
+  <qresource prefix="login_lock">
+    <file>img/login_lock.png</file>
+  </qresource>
+  <qresource prefix="login_person">
+    <file>img/login_person.png</file>
+  </qresource>
+</RCC>
