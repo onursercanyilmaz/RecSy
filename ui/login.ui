@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>LoginForm</class>
+ <widget class="QWidget" name="LoginForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QFrame" name="frame">
+  <widget class="QFrame" name="loginFrame">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -69,10 +69,10 @@ border-top-right-radius: 40;
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnClose">
      <property name="geometry">
       <rect>
-       <x>730</x>
+       <x>50</x>
        <y>20</y>
        <width>20</width>
        <height>20</height>
@@ -102,10 +102,10 @@ radius: 1.35, stop: 0 #fff, stop: 1 #ddd
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="btnMinimize">
      <property name="geometry">
       <rect>
-       <x>710</x>
+       <x>70</x>
        <y>20</y>
        <width>20</width>
        <height>20</height>
@@ -135,40 +135,6 @@ radius: 1.35, stop: 0 #fff, stop: 1 #ddd
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="geometry">
-      <rect>
-       <x>691</x>
-       <y>20</y>
-       <width>20</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-background-color: #34C848;
-border-style: solid;
-border-color: white;
-border-width: 2px;
-border-radius: 10px;
-}
-
-
-QPushButton:hover {
-background: #37AED4;
-}
-
-QPushButton:pressed {
-border-style: inset;
-background: qradialgradient(
-cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
-radius: 1.35, stop: 0 #fff, stop: 1 #ddd
-);}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -180,7 +146,8 @@ radius: 1.35, stop: 0 #fff, stop: 1 #ddd
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/logo/img/RecSy.png);</string>
+     <string notr="true">image: url(:/logo/img/RecSy.png);
+background:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -207,7 +174,7 @@ font-family:Google Sans;
      <string>Login</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btnLogin">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -247,7 +214,7 @@ radius: 1.35, stop: 0 #fff, stop: 1 #ddd
      <string>Login</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="btnDirectSignUp">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -287,7 +254,7 @@ color: #37AED4;
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="lineEdit_Username">
      <property name="styleSheet">
       <string notr="true">QLineEdit{
 background:#37AED4;
@@ -305,7 +272,7 @@ padding-left: 10px;
       <string>Username</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="lineEdit_Password">
      <property name="styleSheet">
       <string notr="true">QLineEdit{
 background:#37AED4;
@@ -334,7 +301,7 @@ padding-left: 10px;
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>210</y>
+      <y>220</y>
       <width>41</width>
       <height>131</height>
      </rect>
@@ -359,15 +326,13 @@ padding-left: 10px;
      </property>
     </widget>
    </widget>
+   <zorder>splitter_2</zorder>
+   <zorder>splitter_3</zorder>
    <zorder>label</zorder>
    <zorder>groupBox</zorder>
    <zorder>label_2</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>pushButton_4</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
+   <zorder>btnLogin</zorder>
+   <zorder>btnDirectSignUp</zorder>
   </widget>
  </widget>
  <resources>

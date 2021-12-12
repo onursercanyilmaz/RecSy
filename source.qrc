@@ -2,6 +2,21 @@
   <qresource prefix="logo">
     <file>img/RecSy.png</file>
   </qresource>
+  <qresource prefix="favoritesPerson">
+    <file>img/favorites_person.png</file>
+  </qresource>
+  <qresource prefix="addFavorite">
+    <file>img/addFavorite.png</file>
+  </qresource>
+  <qresource prefix="removeFavorite">
+    <file>img/removeFavorite.png</file>
+  </qresource>
+  <qresource prefix="home">
+    <file>img/home.png</file>
+  </qresource>
+  <qresource prefix="loading">
+    <file>img/loading.gif</file>
+  </qresource>
   <qresource prefix="back">
     <file>img/back.png</file>
   </qresource>
