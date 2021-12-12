@@ -7,6 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QPoint
+from PyQt5.QtWidgets import QMainWindow
+
+from ui.pyUI.taskBar import TaskBarManagement
+
 
 class Ui_SignUpForm(object):
     def setupUi(self, SignUpForm):
@@ -45,6 +50,7 @@ class Ui_SignUpForm(object):
         self.groupBox.setObjectName("groupBox")
         self.btnClose = QtWidgets.QPushButton(self.groupBox)
         self.btnClose.setGeometry(QtCore.QRect(40, 20, 20, 20))
+        self.btnClose.clicked.connect(TaskBarManagement.close)
         self.btnClose.setStyleSheet("QPushButton{\n"
 "background-color: #FD5754;\n"
 "border-style: solid;\n"
@@ -66,6 +72,7 @@ class Ui_SignUpForm(object):
         self.btnClose.setText("")
         self.btnClose.setObjectName("btnClose")
         self.btnMinimize = QtWidgets.QPushButton(self.groupBox)
+        self.btnMinimize.clicked.connect(TaskBarManagement.minimize)
         self.btnMinimize.setGeometry(QtCore.QRect(60, 20, 20, 20))
         self.btnMinimize.setStyleSheet("QPushButton{\n"
 "background-color: #F9B637;\n"
@@ -228,14 +235,39 @@ class Ui_SignUpForm(object):
         self.lineEdit_Password.setText(_translate("SignUpForm", "abcd"))
         self.lineEdit_Password.setPlaceholderText(_translate("SignUpForm", "Password"))
 
-import source_rc
+import source
+class MyWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_SignUpForm()
+        self.ui.setupUi(self)
+
+
+        ## REMOVE TITLE BAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+
+        self.oldPos = self.pos()
+        self.show()
+
+
+
+    def mousePressEvent(self, event):
+            self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+            delta = QPoint(event.globalPos() - self.oldPos)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPos = event.globalPos()
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    SignUpForm = QtWidgets.QWidget()
-    ui = Ui_SignUpForm()
-    ui.setupUi(SignUpForm)
-    SignUpForm.show()
-    sys.exit(app.exec_())
 
+    app = QtWidgets.QApplication(sys.argv)
+    SignUpForm = MyWindow()
+    """QtWidgets.QWidget()
+    ui = Ui_MainForm()
+    ui.setupUi(MainForm)"""
+    #MainForm.show()
+    sys.exit(app.exec_())

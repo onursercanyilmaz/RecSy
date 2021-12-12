@@ -127,7 +127,7 @@ class Ui_SplashForm(object):
         _translate = QtCore.QCoreApplication.translate
         SplashForm.setWindowTitle(_translate("SplashForm", "Form"))
 
-import source_rc
+import source
 
 if __name__ == "__main__":
     import sys
@@ -137,4 +137,3 @@ if __name__ == "__main__":
     ui.setupUi(SplashForm)
     SplashForm.show()
     sys.exit(app.exec_())
-

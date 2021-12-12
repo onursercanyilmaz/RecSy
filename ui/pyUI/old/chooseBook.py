@@ -286,7 +286,7 @@ class Ui_ChooseBookForm(object):
         self.comboBox_Books.setItemText(2, _translate("ChooseBookForm", "New Item"))
         self.btnSelect.setText(_translate("ChooseBookForm", "Select"))
 
-import source_rc
+import source
 
 if __name__ == "__main__":
     import sys

@@ -9,21 +9,19 @@
 ################################################################################
 import sys
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import *
-from PyQt5.QtGui import QFont, QColor
+from PyQt5 import QtCore
+from PyQt5.QtCore import QPoint
+from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import *
 
-from splash import Splash_UI
-from login import Login_UI
 
 
 
 ## ==> SPLASH SCREEN
-from splash import Splash_UI
+from ui.pyUI.scenes.splash import Ui_SplashForm
 
 ## ==> MAIN WINDOW
-from login import Login_UI
+from ui.pyUI.scenes.login import Ui_LoginForm
 
 ## ==> GLOBALS
 counter = 0
@@ -32,19 +30,31 @@ counter = 0
 class MainWindow(QWidget):
     def __init__(self):
         QMainWindow.__init__(self)
-        self.ui = Login_UI()
+        self.ui = Ui_LoginForm()
         self.ui.setupUi(self)
 
         ## REMOVE TITLE BAR
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.oldPos = self.pos()
+
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        delta = QPoint(event.globalPos() - self.oldPos)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.oldPos = event.globalPos()
+
+
+
 
 
 # SPLASH SCREEN
 class SplashScreen(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
-        self.ui = Splash_UI()
+        self.ui = Ui_SplashForm()
         self.ui.setupUi(self)
 
         ## UI ==> INTERFACE CODES
@@ -53,6 +63,10 @@ class SplashScreen(QMainWindow):
         ## REMOVE TITLE BAR
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+
+
+
 
 
         ## DROP SHADOW EFFECT
@@ -107,8 +121,13 @@ class SplashScreen(QMainWindow):
 
 
 
+import source
 
 if __name__ == "__main__":
+
     app = QApplication(sys.argv)
     window = SplashScreen()
+    #app.setWindowIcon(QIcon("RecSy.ico"))
+
+
     sys.exit(app.exec_())

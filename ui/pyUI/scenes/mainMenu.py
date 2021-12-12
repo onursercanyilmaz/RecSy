@@ -7,15 +7,23 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QPoint
 
-class Ui_MainForm(object):
-    def setupUi(self, MainForm):
-        MainForm.setObjectName("MainForm")
-        MainForm.resize(939, 618)
-        MainForm.setMinimumSize(QtCore.QSize(0, 300))
-        self.verticalLayout = QtWidgets.QVBoxLayout(MainForm)
+from PyQt5.QtWidgets import QMainWindow
+
+from ui.pyUI.taskBar import TaskBarManagement
+
+
+class Ui_MainMenu(object):
+    def setupUi(self, MainMenuForm):
+        MainMenuForm.setObjectName("MainWindow")
+        MainMenuForm.resize(1200, 675)
+
+        self.centralwidgetMainMenu = QtWidgets.QWidget(MainMenuForm)
+        self.centralwidgetMainMenu.setObjectName("centralwidgetMainMenu")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidgetMainMenu)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.mainFrame = QtWidgets.QFrame(MainForm)
+        self.mainFrame = QtWidgets.QFrame(self.centralwidgetMainMenu)
         self.mainFrame.setStyleSheet("QFrame{background:#300331;\n"
 "border-style: solid;\n"
 "  border-color: red;\n"
@@ -65,7 +73,9 @@ class Ui_MainForm(object):
 "")
         self.TabBar.setTitle("")
         self.TabBar.setObjectName("TabBar")
+
         self.btnClose = QtWidgets.QPushButton(self.TabBar)
+        self.btnClose.clicked.connect(TaskBarManagement.close)
         self.btnClose.setGeometry(QtCore.QRect(30, 20, 20, 20))
         self.btnClose.setStyleSheet("QPushButton{\n"
 "background-color: #FD5754;\n"
@@ -88,6 +98,7 @@ class Ui_MainForm(object):
         self.btnClose.setText("")
         self.btnClose.setObjectName("btnClose")
         self.btnminimize = QtWidgets.QPushButton(self.TabBar)
+        self.btnminimize.clicked.connect(TaskBarManagement.minimize)
         self.btnminimize.setGeometry(QtCore.QRect(50, 20, 20, 20))
         self.btnminimize.setStyleSheet("QPushButton{\n"
 "background-color: #F9B637;\n"
@@ -110,6 +121,7 @@ class Ui_MainForm(object):
         self.btnminimize.setText("")
         self.btnminimize.setObjectName("btnminimize")
         self.btnZoom = QtWidgets.QPushButton(self.TabBar)
+        self.btnZoom.clicked.connect(TaskBarManagement.zoom)
         self.btnZoom.setGeometry(QtCore.QRect(70, 20, 20, 20))
         self.btnZoom.setStyleSheet("QPushButton{\n"
 "background-color: #34C848;\n"
@@ -251,24 +263,52 @@ class Ui_MainForm(object):
         self.WholeBody.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addWidget(self.splitter)
         self.verticalLayout.addWidget(self.mainFrame)
+        MainMenuForm.setCentralWidget(self.centralwidgetMainMenu)
 
-        self.retranslateUi(MainForm)
-        QtCore.QMetaObject.connectSlotsByName(MainForm)
+        self.retranslateUi(MainMenuForm)
+        QtCore.QMetaObject.connectSlotsByName(MainMenuForm)
 
-    def retranslateUi(self, MainForm):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainForm.setWindowTitle(_translate("MainForm", "Form"))
-        self.label_2.setText(_translate("MainForm", "Would you like to "))
-        self.label_3.setText(_translate("MainForm", "read or watch?"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label_2.setText(_translate("MainWindow", "Would you like to "))
+        self.label_3.setText(_translate("MainWindow", "read or watch?"))
 
-import source_rc
+import source
+class MyWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainMenu()
+        self.ui.setupUi(self)
+
+
+
+        ## REMOVE TITLE BAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+
+        self.oldPos = self.pos()
+        self.show()
+
+
+
+    def mousePressEvent(self, event):
+            self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+            delta = QPoint(event.globalPos() - self.oldPos)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPos = event.globalPos()
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    MainForm = QtWidgets.QWidget()
+    MainMenuForm = MyWindow()
+    """QtWidgets.QWidget()
     ui = Ui_MainForm()
-    ui.setupUi(MainForm)
-    MainForm.show()
+    ui.setupUi(MainForm)"""
+    #MainForm.show()
     sys.exit(app.exec_())
 

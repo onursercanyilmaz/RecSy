@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TVSeriesRecommendationsForm</class>
- <widget class="QWidget" name="TVSeriesRecommendationsForm">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1066</width>
-    <height>701</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>MainWindow</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QFrame" name="tvSeriesRecommendationsFrame">
-     <property name="styleSheet">
-      <string notr="true">QFrame{background:#300331;
+  <widget class="QWidget" name="centralwidgetTvSeriesRecommendations">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QFrame" name="tvSeriesRecommendationsFrame">
+      <property name="styleSheet">
+       <string notr="true">QFrame{background:#300331;
 border-style: solid;
   border-color: red;
 border-radius:40;}
@@ -40,72 +41,72 @@ background: qradialgradient(
 cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
 radius: 1.35, stop: 0 #fff, stop: 1 #ddd
 );}</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="leftMargin">
-       <number>0</number>
       </property>
-      <property name="topMargin">
-       <number>0</number>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="rightMargin">
-       <number>0</number>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QSplitter" name="splitter">
-        <property name="styleSheet">
-         <string notr="true">background:none;</string>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="barLogo">
-          <item>
-           <widget class="QGroupBox" name="TabBar">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background:#920C7C;
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QSplitter" name="splitter">
+         <property name="styleSheet">
+          <string notr="true">background:none;</string>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="barLogo">
+           <item>
+            <widget class="QGroupBox" name="TabBar">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background:#920C7C;
 border: 2px solid white;
 border-radius:0;
 border-top-left-radius: 40;
 border-top-right-radius: 40;
 </string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <widget class="QPushButton" name="btnClose">
-             <property name="geometry">
-              <rect>
-               <x>70</x>
-               <y>20</y>
-               <width>20</width>
-               <height>20</height>
-              </rect>
              </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+             <property name="title">
+              <string/>
+             </property>
+             <widget class="QPushButton" name="btnClose">
+              <property name="geometry">
+               <rect>
+                <x>70</x>
+                <y>20</y>
+                <width>20</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
 background-color: #FD5754;
 border-style: solid;
 border-color: white;
@@ -123,22 +124,22 @@ background: qradialgradient(
 cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
 radius: 1.35, stop: 0 #fff, stop: 1 #ddd
 );}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="btnMinimize">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>20</y>
-               <width>20</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnMinimize">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>20</y>
+                <width>20</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
 background-color: #F9B637;
 border-style: solid;
 border-color: white;
@@ -156,22 +157,22 @@ background: qradialgradient(
 cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
 radius: 1.35, stop: 0 #fff, stop: 1 #ddd
 );}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="btnZoom">
-             <property name="geometry">
-              <rect>
-               <x>31</x>
-               <y>20</y>
-               <width>20</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btnZoom">
+              <property name="geometry">
+               <rect>
+                <x>31</x>
+                <y>20</y>
+                <width>20</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
 background-color: #34C848;
 border-style: solid;
 border-color: white;
@@ -190,201 +191,201 @@ background: qradialgradient(
 cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
 radius: 1.35, stop: 0 #fff, stop: 1 #ddd
 );}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="BooksLogo">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>75</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border:none;</string>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <widget class="QLabel" name="label_9">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>10</y>
-               <width>511</width>
-               <height>75</height>
-              </rect>
-             </property>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="BooksLogo">
              <property name="minimumSize">
               <size>
-               <width>50</width>
+               <width>0</width>
                <height>75</height>
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background:none;
+              <string notr="true">border:none;</string>
+             </property>
+             <property name="title">
+              <string/>
+             </property>
+             <widget class="QLabel" name="label_9">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>511</width>
+                <height>75</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>75</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background:none;
 font-size:36px;
 color:white;
 font-weight:bold;
 font-family:google sans;
 image: url(:/logo/img/RecSy.png);</string>
-             </property>
-             <property name="text">
-              <string>TV Series</string>
-             </property>
-             <property name="margin">
-              <number>55</number>
-             </property>
+              </property>
+              <property name="text">
+               <string>TV Series</string>
+              </property>
+              <property name="margin">
+               <number>55</number>
+              </property>
+             </widget>
             </widget>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="layoutWidget_2">
-         <layout class="QVBoxLayout" name="WholeBody">
-          <property name="leftMargin">
-           <number>25</number>
-          </property>
-          <property name="rightMargin">
-           <number>25</number>
-          </property>
-          <property name="bottomMargin">
-           <number>15</number>
-          </property>
-          <item>
-           <widget class="QSplitter" name="body">
-            <property name="styleSheet">
-             <string notr="true">QSplitter::handle {
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget_2">
+          <layout class="QVBoxLayout" name="WholeBody">
+           <property name="leftMargin">
+            <number>25</number>
+           </property>
+           <property name="rightMargin">
+            <number>25</number>
+           </property>
+           <property name="bottomMargin">
+            <number>15</number>
+           </property>
+           <item>
+            <widget class="QSplitter" name="body">
+             <property name="styleSheet">
+              <string notr="true">QSplitter::handle {
     background: none;
 }</string>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <widget class="QSplitter" name="hereIs">
+             </property>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <widget class="QWidget" name="layoutWidget_3">
-              <layout class="QVBoxLayout" name="verticalLayout_3">
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="styleSheet">
-                  <string notr="true">QLabel{
+             <widget class="QSplitter" name="hereIs">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <widget class="QWidget" name="layoutWidget_3">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="styleSheet">
+                   <string notr="true">QLabel{
 font-size:45px;
 color:#920C7C;
 font-weight:bold;
 font-family:Google Sans;
 }</string>
-                 </property>
-                 <property name="text">
-                  <string>Here is top 5</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="styleSheet">
-                  <string notr="true">QLabel{
+                  </property>
+                  <property name="text">
+                   <string>Here is top 5</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="styleSheet">
+                   <string notr="true">QLabel{
 font-size:40px;
 color:#920C7C;
 font-weight:bold;
 font-family:Google Sans;
 }</string>
-                 </property>
-                 <property name="text">
-                  <string>recommendations to you!</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+                  </property>
+                  <property name="text">
+                   <string>recommendations to you!</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </widget>
-            </widget>
-            <widget class="QListWidget" name="listWidget">
-             <property name="styleSheet">
-              <string notr="true">QListWidget{
+             <widget class="QListWidget" name="listWidget">
+              <property name="styleSheet">
+               <string notr="true">QListWidget{
 color:white;
 font-size:30px;
 font-family:Google Sans;
 background:#300331;
 }</string>
-             </property>
-             <property name="currentRow">
-              <number>-1</number>
-             </property>
-             <item>
-              <property name="text">
-               <string>New Item</string>
               </property>
-              <property name="checkState">
-               <enum>Unchecked</enum>
+              <property name="currentRow">
+               <number>-1</number>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>New Item</string>
-              </property>
-              <property name="checkState">
-               <enum>Unchecked</enum>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>New Item</string>
-              </property>
-              <property name="checkState">
-               <enum>Unchecked</enum>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>New Item</string>
-              </property>
-              <property name="checkState">
-               <enum>Unchecked</enum>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>New Item</string>
-              </property>
-              <property name="checkState">
-               <enum>Unchecked</enum>
-              </property>
-             </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+               <property name="checkState">
+                <enum>Unchecked</enum>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+               <property name="checkState">
+                <enum>Unchecked</enum>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+               <property name="checkState">
+                <enum>Unchecked</enum>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+               <property name="checkState">
+                <enum>Unchecked</enum>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+               <property name="checkState">
+                <enum>Unchecked</enum>
+               </property>
+              </item>
+             </widget>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSplitter" name="bottomBar">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QSplitter::handle {
+           </item>
+           <item>
+            <widget class="QSplitter" name="bottomBar">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSplitter::handle {
     background: none;
 }</string>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <widget class="QToolButton" name="toolButton_4">
-             <property name="styleSheet">
-              <string notr="true">QToolButton{
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QToolButton" name="toolButton_4">
+              <property name="styleSheet">
+               <string notr="true">QToolButton{
 background:transparent;
 image: url(:/home/img/home.png);
 }
@@ -397,14 +398,14 @@ border-radius:25;
 QToolButton:pressed {
 border-style: inset;
 background: #37AED4;}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QToolButton" name="toolButton_5">
-             <property name="styleSheet">
-              <string notr="true">QToolButton{
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QToolButton" name="toolButton_5">
+              <property name="styleSheet">
+               <string notr="true">QToolButton{
 background:transparent;
 image: url(:/addFavorite/img/addFavorite.png);
 }
@@ -417,21 +418,22 @@ border-radius:25;
 QToolButton:pressed {
 border-style: inset;
 background: #37AED4;}</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
             </widget>
-           </widget>
-          </item>
-         </layout>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-  </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources>
   <include location="../source.qrc"/>

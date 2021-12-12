@@ -1,21 +1,27 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tvSeriesRecommendation.ui'
+# Form implementation generated from reading ui file 'withMainWindowTry.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 
-class Ui_TVSeriesRecommendationsForm(object):
-    def setupUi(self, TVSeriesRecommendationsForm):
-        TVSeriesRecommendationsForm.setObjectName("TVSeriesRecommendationsForm")
-        TVSeriesRecommendationsForm.resize(1066, 701)
-        self.verticalLayout = QtWidgets.QVBoxLayout(TVSeriesRecommendationsForm)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.tvSeriesRecommendationsFrame = QtWidgets.QFrame(TVSeriesRecommendationsForm)
-        self.tvSeriesRecommendationsFrame.setStyleSheet("QFrame{background:#300331;\n"
+from ui.pyUI.taskBar import TaskBarManagement
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.bookrecommendationsFrame = QtWidgets.QFrame(self.centralwidget)
+        self.bookrecommendationsFrame.setStyleSheet("QFrame{background:#300331;\n"
 "border-style: solid;\n"
 "  border-color: red;\n"
 "border-radius:40;}\n"
@@ -38,13 +44,13 @@ class Ui_TVSeriesRecommendationsForm(object):
 "cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,\n"
 "radius: 1.35, stop: 0 #fff, stop: 1 #ddd\n"
 ");}")
-        self.tvSeriesRecommendationsFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.tvSeriesRecommendationsFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.tvSeriesRecommendationsFrame.setObjectName("tvSeriesRecommendationsFrame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.tvSeriesRecommendationsFrame)
+        self.bookrecommendationsFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.bookrecommendationsFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.bookrecommendationsFrame.setObjectName("bookrecommendationsFrame")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.bookrecommendationsFrame)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.splitter = QtWidgets.QSplitter(self.tvSeriesRecommendationsFrame)
+        self.splitter = QtWidgets.QSplitter(self.bookrecommendationsFrame)
         self.splitter.setStyleSheet("background:none;")
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
@@ -64,8 +70,10 @@ class Ui_TVSeriesRecommendationsForm(object):
 "")
         self.TabBar.setTitle("")
         self.TabBar.setObjectName("TabBar")
+        self.TabBar.mouseMoveEvent = TaskBarManagement.moveWindow
+
         self.btnClose = QtWidgets.QPushButton(self.TabBar)
-        self.btnClose.setGeometry(QtCore.QRect(70, 20, 20, 20))
+        self.btnClose.setGeometry(QtCore.QRect(30, 20, 20, 20))
         self.btnClose.setStyleSheet("QPushButton{\n"
 "background-color: #FD5754;\n"
 "border-style: solid;\n"
@@ -109,7 +117,8 @@ class Ui_TVSeriesRecommendationsForm(object):
         self.btnMinimize.setText("")
         self.btnMinimize.setObjectName("btnMinimize")
         self.btnZoom = QtWidgets.QPushButton(self.TabBar)
-        self.btnZoom.setGeometry(QtCore.QRect(31, 20, 20, 20))
+        self.btnZoom.clicked.connect(TaskBarManagement.zoom)
+        self.btnZoom.setGeometry(QtCore.QRect(70, 20, 20, 20))
         self.btnZoom.setStyleSheet("QPushButton{\n"
 "background-color: #34C848;\n"
 "border-style: solid;\n"
@@ -137,16 +146,16 @@ class Ui_TVSeriesRecommendationsForm(object):
         self.BooksLogo.setStyleSheet("border:none;")
         self.BooksLogo.setTitle("")
         self.BooksLogo.setObjectName("BooksLogo")
-        self.label_9 = QtWidgets.QLabel(self.BooksLogo)
-        self.label_9.setGeometry(QtCore.QRect(10, 10, 511, 75))
-        self.label_9.setMinimumSize(QtCore.QSize(50, 75))
-        self.label_9.setStyleSheet("background:none;\n"
+        self.label_BooksLogo = QtWidgets.QLabel(self.BooksLogo)
+        self.label_BooksLogo.setGeometry(QtCore.QRect(10, 10, 391, 75))
+        self.label_BooksLogo.setMinimumSize(QtCore.QSize(50, 75))
+        self.label_BooksLogo.setStyleSheet("background:none;\n"
 "font-size:36px;\n"
 "color:white;\n"
 "font-weight:bold;\n"
 "font-family:google sans;\n"
 "image: url(:/logo/img/RecSy.png);")
-        self.label_9.setObjectName("label_9")
+        self.label_BooksLogo.setObjectName("label_BooksLogo")
         self.barLogo.addWidget(self.BooksLogo)
         self.layoutWidget_2 = QtWidgets.QWidget(self.splitter)
         self.layoutWidget_2.setObjectName("layoutWidget_2")
@@ -167,16 +176,16 @@ class Ui_TVSeriesRecommendationsForm(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.layoutWidget_3)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_2 = QtWidgets.QLabel(self.layoutWidget_3)
-        self.label_2.setStyleSheet("QLabel{\n"
+        self.label_1 = QtWidgets.QLabel(self.layoutWidget_3)
+        self.label_1.setStyleSheet("QLabel{\n"
 "font-size:45px;\n"
 "color:#920C7C;\n"
 "font-weight:bold;\n"
 "font-family:Google Sans;\n"
 "}")
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_3.addWidget(self.label_2)
+        self.label_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_1.setObjectName("label_1")
+        self.verticalLayout_3.addWidget(self.label_1)
         self.label_3 = QtWidgets.QLabel(self.layoutWidget_3)
         self.label_3.setStyleSheet("QLabel{\n"
 "font-size:40px;\n"
@@ -187,29 +196,29 @@ class Ui_TVSeriesRecommendationsForm(object):
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
-        self.listWidget = QtWidgets.QListWidget(self.body)
-        self.listWidget.setStyleSheet("QListWidget{\n"
+        self.list_bookRecommendations = QtWidgets.QListWidget(self.body)
+        self.list_bookRecommendations.setStyleSheet("QListWidget{\n"
 "color:white;\n"
 "font-size:30px;\n"
 "font-family:Google Sans;\n"
 "background:#300331;\n"
 "}")
-        self.listWidget.setObjectName("listWidget")
+        self.list_bookRecommendations.setObjectName("list_bookRecommendations")
         item = QtWidgets.QListWidgetItem()
         item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_bookRecommendations.addItem(item)
         item = QtWidgets.QListWidgetItem()
         item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_bookRecommendations.addItem(item)
         item = QtWidgets.QListWidgetItem()
         item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_bookRecommendations.addItem(item)
         item = QtWidgets.QListWidgetItem()
         item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_bookRecommendations.addItem(item)
         item = QtWidgets.QListWidgetItem()
         item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_bookRecommendations.addItem(item)
         self.WholeBody.addWidget(self.body)
         self.bottomBar = QtWidgets.QSplitter(self.layoutWidget_2)
         self.bottomBar.setMinimumSize(QtCore.QSize(0, 50))
@@ -218,8 +227,8 @@ class Ui_TVSeriesRecommendationsForm(object):
 "}")
         self.bottomBar.setOrientation(QtCore.Qt.Horizontal)
         self.bottomBar.setObjectName("bottomBar")
-        self.toolButton_4 = QtWidgets.QToolButton(self.bottomBar)
-        self.toolButton_4.setStyleSheet("QToolButton{\n"
+        self.btnGoHome = QtWidgets.QToolButton(self.bottomBar)
+        self.btnGoHome.setStyleSheet("QToolButton{\n"
 "background:transparent;\n"
 "image: url(:/home/img/home.png);\n"
 "}\n"
@@ -232,10 +241,10 @@ class Ui_TVSeriesRecommendationsForm(object):
 "QToolButton:pressed {\n"
 "border-style: inset;\n"
 "background: #37AED4;}")
-        self.toolButton_4.setText("")
-        self.toolButton_4.setObjectName("toolButton_4")
-        self.toolButton_5 = QtWidgets.QToolButton(self.bottomBar)
-        self.toolButton_5.setStyleSheet("QToolButton{\n"
+        self.btnGoHome.setText("")
+        self.btnGoHome.setObjectName("btnGoHome")
+        self.btnAddFav = QtWidgets.QToolButton(self.bottomBar)
+        self.btnAddFav.setStyleSheet("QToolButton{\n"
 "background:transparent;\n"
 "image: url(:/addFavorite/img/addFavorite.png);\n"
 "}\n"
@@ -248,44 +257,58 @@ class Ui_TVSeriesRecommendationsForm(object):
 "QToolButton:pressed {\n"
 "border-style: inset;\n"
 "background: #37AED4;}")
-        self.toolButton_5.setText("")
-        self.toolButton_5.setObjectName("toolButton_5")
+        self.btnAddFav.setText("")
+        self.btnAddFav.setObjectName("btnAddFav")
         self.WholeBody.addWidget(self.bottomBar)
         self.horizontalLayout.addWidget(self.splitter)
-        self.verticalLayout.addWidget(self.tvSeriesRecommendationsFrame)
+        self.horizontalLayout_2.addWidget(self.bookrecommendationsFrame)
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(TVSeriesRecommendationsForm)
-        self.listWidget.setCurrentRow(-1)
-        QtCore.QMetaObject.connectSlotsByName(TVSeriesRecommendationsForm)
+        self.retranslateUi(MainWindow)
+        self.list_bookRecommendations.setCurrentRow(-1)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, TVSeriesRecommendationsForm):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        TVSeriesRecommendationsForm.setWindowTitle(_translate("TVSeriesRecommendationsForm", "Form"))
-        self.label_9.setText(_translate("TVSeriesRecommendationsForm", "TV Series"))
-        self.label_2.setText(_translate("TVSeriesRecommendationsForm", "Here is top 5"))
-        self.label_3.setText(_translate("TVSeriesRecommendationsForm", "recommendations to you!"))
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
-        item.setText(_translate("TVSeriesRecommendationsForm", "New Item"))
-        item = self.listWidget.item(1)
-        item.setText(_translate("TVSeriesRecommendationsForm", "New Item"))
-        item = self.listWidget.item(2)
-        item.setText(_translate("TVSeriesRecommendationsForm", "New Item"))
-        item = self.listWidget.item(3)
-        item.setText(_translate("TVSeriesRecommendationsForm", "New Item"))
-        item = self.listWidget.item(4)
-        item.setText(_translate("TVSeriesRecommendationsForm", "New Item"))
-        self.listWidget.setSortingEnabled(__sortingEnabled)
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label_BooksLogo.setText(_translate("MainWindow", "Books"))
+        self.label_1.setText(_translate("MainWindow", "Here is top 5"))
+        self.label_3.setText(_translate("MainWindow", "recommendations to you!"))
+        __sortingEnabled = self.list_bookRecommendations.isSortingEnabled()
+        self.list_bookRecommendations.setSortingEnabled(False)
+        item = self.list_bookRecommendations.item(0)
+        item.setText(_translate("MainWindow", "New Item"))
+        item = self.list_bookRecommendations.item(1)
+        item.setText(_translate("MainWindow", "New Item"))
+        item = self.list_bookRecommendations.item(2)
+        item.setText(_translate("MainWindow", "New Item"))
+        item = self.list_bookRecommendations.item(3)
+        item.setText(_translate("MainWindow", "New Item"))
+        item = self.list_bookRecommendations.item(4)
+        item.setText(_translate("MainWindow", "New Item"))
+        self.list_bookRecommendations.setSortingEnabled(__sortingEnabled)
 
-import source_rc
+
+class MyWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        ## REMOVE TITLE BAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        self.show()
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    TVSeriesRecommendationsForm = QtWidgets.QWidget()
-    ui = Ui_TVSeriesRecommendationsForm()
-    ui.setupUi(TVSeriesRecommendationsForm)
-    TVSeriesRecommendationsForm.show()
+    MainForm = MyWindow()
+    """QtWidgets.QWidget()
+    ui = Ui_MainForm()
+    ui.setupUi(MainForm)"""
+    #MainForm.show()
     sys.exit(app.exec_())
 

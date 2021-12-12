@@ -7,11 +7,17 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QPoint
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMainWindow
+
+from ui.pyUI.taskBar import TaskBarManagement
+
 
 class Ui_LoginForm(object):
     def setupUi(self, LoginForm):
         LoginForm.setObjectName("LoginForm")
-        LoginForm.resize(980, 636)
+        LoginForm.resize(1200, 636)
         LoginForm.setStyleSheet("")
         self.loginFrame = QtWidgets.QFrame(LoginForm)
         self.loginFrame.setGeometry(QtCore.QRect(100, 50, 791, 541))
@@ -46,6 +52,7 @@ class Ui_LoginForm(object):
         self.groupBox.setObjectName("groupBox")
         self.btnClose = QtWidgets.QPushButton(self.groupBox)
         self.btnClose.setGeometry(QtCore.QRect(50, 20, 20, 20))
+        self.btnClose.clicked.connect(TaskBarManagement.close)
         self.btnClose.setStyleSheet("QPushButton{\n"
 "background-color: #FD5754;\n"
 "border-style: solid;\n"
@@ -68,6 +75,7 @@ class Ui_LoginForm(object):
         self.btnClose.setObjectName("btnClose")
         self.btnMinimize = QtWidgets.QPushButton(self.groupBox)
         self.btnMinimize.setGeometry(QtCore.QRect(70, 20, 20, 20))
+        self.btnMinimize.clicked.connect(TaskBarManagement.minimize)
         self.btnMinimize.setStyleSheet("QPushButton{\n"
 "background-color: #F9B637;\n"
 "border-style: solid;\n"
@@ -211,14 +219,40 @@ class Ui_LoginForm(object):
         self.lineEdit_Password.setText(_translate("LoginForm", "abcd"))
         self.lineEdit_Password.setPlaceholderText(_translate("LoginForm", "Password"))
 
-import source_rc
+import source
+class MyWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_LoginForm()
+        self.ui.setupUi(self)
+
+
+        ## REMOVE TITLE BAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+
+        self.oldPos = self.pos()
+        self.show()
+
+
+
+    def mousePressEvent(self, event):
+            self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+            delta = QPoint(event.globalPos() - self.oldPos)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPos = event.globalPos()
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    LoginForm = QtWidgets.QWidget()
-    ui = Ui_LoginForm()
-    ui.setupUi(LoginForm)
-    LoginForm.show()
+    LoginForm = MyWindow()
+    """QtWidgets.QWidget()
+    ui = Ui_MainForm()
+    ui.setupUi(MainForm)"""
+    #MainForm.show()
     sys.exit(app.exec_())
 
