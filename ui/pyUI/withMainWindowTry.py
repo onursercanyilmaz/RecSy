@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.taskBar import TaskBarManagement
 
 
 class Ui_MainWindow(object):

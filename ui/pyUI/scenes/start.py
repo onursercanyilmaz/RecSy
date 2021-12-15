@@ -23,6 +23,8 @@ from ui.pyUI.scenes.splash import Ui_SplashForm
 ## ==> MAIN WINDOW
 from ui.pyUI.scenes.login import Ui_LoginForm
 
+from ui.pyUI.scenes.mainMenu import Ui_MainMenu
+
 ## ==> GLOBALS
 counter = 0
 
@@ -31,6 +33,28 @@ class MainWindow(QWidget):
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_LoginForm()
+        self.ui.setupUi(self)
+
+        ## REMOVE TITLE BAR
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        self.oldPos = self.pos()
+
+    def mousePressEvent(self, event):
+        self.oldPos = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        delta = QPoint(event.globalPos() - self.oldPos)
+        self.move(self.x() + delta.x(), self.y() + delta.y())
+        self.oldPos = event.globalPos()
+
+
+
+
+class MainMenuWindow(QWidget):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainMenu()
         self.ui.setupUi(self)
 
         ## REMOVE TITLE BAR

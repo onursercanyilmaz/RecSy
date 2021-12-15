@@ -6,11 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QPoint
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.dbHelper import DBHelper
+from models.taskBar import TaskBarManagement
 
 
 class Ui_ChooseTVSeriesForm(object):
@@ -231,20 +232,7 @@ class Ui_ChooseTVSeriesForm(object):
         self.comboBox_TvSeries.setEditable(True)
         self.comboBox_TvSeries.setFrame(True)
         self.comboBox_TvSeries.setObjectName("comboBox_TvSeries")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
-        self.comboBox_TvSeries.addItem("")
+        DBHelper.loadToTVSeriesComboBox(DBHelper, self.comboBox_TvSeries)
         self.WholeBody_2.addWidget(self.body_2)
         self.bottomBar_2 = QtWidgets.QSplitter(self.layoutWidget_5)
         self.bottomBar_2.setMinimumSize(QtCore.QSize(0, 50))
@@ -310,20 +298,6 @@ class Ui_ChooseTVSeriesForm(object):
         self.label_10.setText(_translate("MainWindow", "TV Series"))
         self.label_4.setText(_translate("MainWindow", "Plsease select your"))
         self.label_5.setText(_translate("MainWindow", "favorite tv series!"))
-        self.comboBox_TvSeries.setItemText(0, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(1, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(2, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(3, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(4, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(5, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(6, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(7, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(8, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(9, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(10, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(11, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(12, _translate("MainWindow", "New Item"))
-        self.comboBox_TvSeries.setItemText(13, _translate("MainWindow", "xxx"))
         self.btnSelect.setText(_translate("MainWindow", "Select"))
 
 import source

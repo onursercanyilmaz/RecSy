@@ -5,13 +5,14 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
+import sqlite3
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPoint
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMessageBox
+
+from models.user import *
+from models.dbHelper import DBHelper
 from PyQt5.QtWidgets import QMainWindow
-
-from ui.pyUI.taskBar import TaskBarManagement
+from ui.pyUI.scenes import mainMenu, screenManager
 
 
 class Ui_LoginForm(object):
@@ -110,37 +111,14 @@ class Ui_LoginForm(object):
 "font-weight:bold;\n"
 "font-family:Google Sans;\n"
 "}")
+
+
         self.label_2.setObjectName("label_2")
-        self.btnLogin = QtWidgets.QPushButton(self.loginFrame)
-        self.btnLogin.setGeometry(QtCore.QRect(330, 390, 121, 51))
-        self.btnLogin.setStyleSheet("QPushButton{\n"
-"background-color: #37AED4;\n"
-"border-style: solid;\n"
-"border-color: #37AED4;\n"
-"border-width: 2px;\n"
-"border-radius: 10px;\n"
-"font-family:Google Sans;\n"
-"font-weight: bold;\n"
-"font-size:18px;\n"
-"color:#300331;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover {\n"
-"background: #300331;\n"
-"color:#37AED4;\n"
-"border-color: #300331;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"border-style: inset;\n"
-"background: qradialgradient(\n"
-"cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,\n"
-"radius: 1.35, stop: 0 #fff, stop: 1 #ddd\n"
-");}")
-        self.btnLogin.setObjectName("btnLogin")
+
+
         self.btnDirectSignUp = QtWidgets.QPushButton(self.loginFrame)
         self.btnDirectSignUp.setGeometry(QtCore.QRect(260, 480, 281, 20))
+       # self.btnDirectSignUp.clicked.connect(screenManager.Login.directToSignUp)
         self.btnDirectSignUp.setStyleSheet("QPushButton{\n"
 "background-color: transparent;\n"
 "font-family:Google Sans;\n"
@@ -186,6 +164,39 @@ class Ui_LoginForm(object):
 "}")
         self.lineEdit_Password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_Password.setObjectName("lineEdit_Password")
+
+        self.btnLogin = QtWidgets.QPushButton(self.loginFrame)
+
+        self.btnLogin.setGeometry(QtCore.QRect(330, 390, 121, 51))
+        self.btnLogin.setStyleSheet("QPushButton{\n"
+                                    "background-color: #37AED4;\n"
+                                    "border-style: solid;\n"
+                                    "border-color: #37AED4;\n"
+                                    "border-width: 2px;\n"
+                                    "border-radius: 10px;\n"
+                                    "font-family:Google Sans;\n"
+                                    "font-weight: bold;\n"
+                                    "font-size:18px;\n"
+                                    "color:#300331;\n"
+                                    "}\n"
+                                    "\n"
+                                    "\n"
+                                    "QPushButton:hover {\n"
+                                    "background: #300331;\n"
+                                    "color:#37AED4;\n"
+                                    "border-color: #300331;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:pressed {\n"
+                                    "border-style: inset;\n"
+                                    "background: qradialgradient(\n"
+                                    "cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,\n"
+                                    "radius: 1.35, stop: 0 #fff, stop: 1 #ddd\n"
+                                    ");}")
+        self.btnLogin.setObjectName("btnLogin")
+        #self.btnLogin.clicked.connect(self.loginCheck)
+
+
         self.splitter_3 = QtWidgets.QSplitter(self.loginFrame)
         self.splitter_3.setGeometry(QtCore.QRect(190, 220, 41, 131))
         self.splitter_3.setOrientation(QtCore.Qt.Vertical)
@@ -209,6 +220,8 @@ class Ui_LoginForm(object):
         self.retranslateUi(LoginForm)
         QtCore.QMetaObject.connectSlotsByName(LoginForm)
 
+
+
     def retranslateUi(self, LoginForm):
         _translate = QtCore.QCoreApplication.translate
         LoginForm.setWindowTitle(_translate("LoginForm", "Form"))
@@ -218,6 +231,29 @@ class Ui_LoginForm(object):
         self.lineEdit_Username.setPlaceholderText(_translate("LoginForm", "Username"))
         self.lineEdit_Password.setText(_translate("LoginForm", "abcd"))
         self.lineEdit_Password.setPlaceholderText(_translate("LoginForm", "Password"))
+
+    """def loginCheck(self):
+        print("login button clicked")
+        username = self.lineEdit_Username.text()
+        password = self.lineEdit_Password.text()
+
+        connection = sqlite3.connect("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\db\RESCSYdb.db")
+
+        result = connection.execute('''SELECT * FROM users WHERE username=? and password=?''', (username, password))
+
+        if ((len(result.fetchall()) > 0)):
+            print("USER FOUND")
+            self.mainScene = mainMenu.MyWindow()
+
+            self.mainScene.show()
+            #self.close()
+        else:
+            print("USER NOT FOUND")
+            msgBox = QMessageBox.warning(self.loginFrame, "WARNING", "Your Password INCORRECT!")
+            msgBox.execute()"""
+
+
+
 
 import source
 class MyWindow(QMainWindow):
@@ -232,7 +268,9 @@ class MyWindow(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
 
+
         self.oldPos = self.pos()
+
         self.show()
 
 
@@ -244,6 +282,11 @@ class MyWindow(QMainWindow):
             delta = QPoint(event.globalPos() - self.oldPos)
             self.move(self.x() + delta.x(), self.y() + delta.y())
             self.oldPos = event.globalPos()
+
+
+
+
+
 
 if __name__ == "__main__":
     import sys

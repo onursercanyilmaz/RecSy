@@ -6,17 +6,22 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QPoint
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.dbHelper import DBHelper
+from models.taskBar import TaskBarManagement
 
 
 class Ui_ChooseBookForm(object):
+    db = DBHelper()
     def setupUi(self, ChooseBookForm):
         ChooseBookForm.setObjectName("MainWindow")
         ChooseBookForm.resize(1200, 675)
+        ChooseBookForm.move(0,150)
+
+
         self.centralwidgetchooseBook = QtWidgets.QWidget(ChooseBookForm)
         self.centralwidgetchooseBook.setObjectName("centralwidgetchooseBook")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidgetchooseBook)
@@ -207,8 +212,11 @@ class Ui_ChooseBookForm(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.comboBox_Books.sizePolicy().hasHeightForWidth())
         self.comboBox_Books.setSizePolicy(sizePolicy)
-        self.comboBox_Books.setMinimumSize(QtCore.QSize(0, 300))
+        self.comboBox_Books.setMinimumSize(QtCore.QSize(0, 100))
+        self.comboBox_Books.setMaximumWidth(1800)
+        self.comboBox_Books.setMaximumHeight(300)
         self.comboBox_Books.setLayoutDirection(QtCore.Qt.LeftToRight)
+        DBHelper.loadBooksToComboBox(DBHelper,self.comboBox_Books)
         self.comboBox_Books.setStyleSheet("color:white;\n"
 "background:#300331;\n"
 "font-size:30px;\n"
@@ -219,15 +227,12 @@ class Ui_ChooseBookForm(object):
 "border:1px solid white;\n"
 "border-radius:25px;\n"
 " padding-left: 75px;\n"
-"margin-left:75px;\n"
+"margin-left:125px;\n"
 "margin-top:55px;\n"
-"margin-right:75px;")
+"margin-right:125px;")
         self.comboBox_Books.setEditable(True)
         self.comboBox_Books.setFrame(True)
         self.comboBox_Books.setObjectName("comboBox_Books")
-        self.comboBox_Books.addItem("")
-        self.comboBox_Books.addItem("")
-        self.comboBox_Books.addItem("")
         self.WholeBody_2.addWidget(self.body_2)
         self.bottomBar_2 = QtWidgets.QSplitter(self.layoutWidget_5)
         self.bottomBar_2.setMinimumSize(QtCore.QSize(0, 50))
@@ -253,6 +258,7 @@ class Ui_ChooseBookForm(object):
         self.btnBack.setText("")
         self.btnBack.setObjectName("btnBack")
         self.btnSelect = QtWidgets.QPushButton(self.bottomBar_2)
+        #self.btnSelect.clicked.connect(DBHelper.getBookName(self.db,self.comboBox_Books))
         self.btnSelect.setStyleSheet("QPushButton{\n"
 "background-color: #37AED4;\n"
 "border-style: solid;\n"
@@ -293,9 +299,7 @@ class Ui_ChooseBookForm(object):
         self.label_10.setText(_translate("MainWindow", "Books"))
         self.label_4.setText(_translate("MainWindow", "Plsease select your"))
         self.label_5.setText(_translate("MainWindow", "favorite book!"))
-        self.comboBox_Books.setItemText(0, _translate("MainWindow", "New Item"))
-        self.comboBox_Books.setItemText(1, _translate("MainWindow", "New Item"))
-        self.comboBox_Books.setItemText(2, _translate("MainWindow", "New Item"))
+
         self.btnSelect.setText(_translate("MainWindow", "Select"))
 
 import source
@@ -313,6 +317,13 @@ class MyWindow(QMainWindow):
 
 
         self.oldPos = self.pos()
+
+
+
+
+
+
+
         self.show()
 
 

@@ -6,11 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QPoint
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.taskBar import TaskBarManagement
+
 
 
 class Ui_SignUpForm(object):
@@ -138,6 +139,7 @@ class Ui_SignUpForm(object):
         self.btnSignUp.setObjectName("btnSignUp")
         self.btnDirectLogin = QtWidgets.QPushButton(self.signUpFrame)
         self.btnDirectLogin.setGeometry(QtCore.QRect(280, 480, 281, 20))
+        self.btnDirectLogin.clicked.connect(self.directLogin)
         self.btnDirectLogin.setStyleSheet("QPushButton{\n"
 "background-color: transparent;\n"
 "font-family:Google Sans;\n"
@@ -234,6 +236,18 @@ class Ui_SignUpForm(object):
         self.lineEdit_Email.setPlaceholderText(_translate("SignUpForm", "E-mail"))
         self.lineEdit_Password.setText(_translate("SignUpForm", "abcd"))
         self.lineEdit_Password.setPlaceholderText(_translate("SignUpForm", "Password"))
+
+    def directLogin(self):
+        pass
+        #LoginForm.show()
+        #LoginForm.ui.loginFrame.setVisible(True)
+        #self.signUpFrame.setVisible(False)
+        #login.MyWindow.show()
+
+
+
+
+
 
 import source
 class MyWindow(QMainWindow):

@@ -6,11 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QPoint
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.dbHelper import DBHelper
+from models.taskBar import TaskBarManagement
 
 
 class Ui_FavoritesForm(object):
@@ -147,6 +148,11 @@ class Ui_FavoritesForm(object):
         self.BooksLogo.setStyleSheet("border:none;")
         self.BooksLogo.setTitle("")
         self.BooksLogo.setObjectName("BooksLogo")
+
+
+
+
+        #LABEL 9----
         self.label_9 = QtWidgets.QLabel(self.BooksLogo)
         self.label_9.setGeometry(QtCore.QRect(10, 10, 571, 75))
         self.label_9.setMinimumSize(QtCore.QSize(50, 75))
@@ -155,9 +161,11 @@ class Ui_FavoritesForm(object):
 "color:white;\n"
 "font-weight:bold;\n"
 "margin-left:25px;\n"
-"font-family:google sans;\n"
-"image: url(:/logo/img/RecSy.png);")
+"font-family:google sans;")
         self.label_9.setObjectName("label_9")
+
+        # -----LABEL 9
+
         self.barLogo.addWidget(self.BooksLogo)
         self.layoutWidget_2 = QtWidgets.QWidget(self.splitter)
         self.layoutWidget_2.setObjectName("layoutWidget_2")
@@ -184,6 +192,11 @@ class Ui_FavoritesForm(object):
         self.profilePic.setText("")
         self.profilePic.setObjectName("profilePic")
         self.verticalLayout_3.addWidget(self.profilePic)
+
+
+
+
+
         self.gridLayoutWidget = QtWidgets.QWidget(self.body)
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
@@ -191,6 +204,7 @@ class Ui_FavoritesForm(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.list_favBooks = QtWidgets.QListWidget(self.gridLayoutWidget)
         self.list_favBooks.setMinimumSize(QtCore.QSize(0, 300))
+        DBHelper.loadFavoriteBooks(DBHelper,self.list_favBooks)
         self.list_favBooks.setStyleSheet("QListWidget{\n"
 "color:white;\n"
 "font-size:30px;\n"
@@ -200,14 +214,11 @@ class Ui_FavoritesForm(object):
 "padding:30px;\n"
 "\n"
 "}")
+
+
+
         self.list_favBooks.setObjectName("list_favBooks")
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.list_favBooks.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_favBooks.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.list_favBooks.addItem(item)
+
         self.gridLayout_2.addWidget(self.list_favBooks, 4, 0, 1, 1)
         self.list_favtvSeries = QtWidgets.QListWidget(self.gridLayoutWidget)
         self.list_favtvSeries.setMinimumSize(QtCore.QSize(0, 300))
@@ -231,6 +242,7 @@ class Ui_FavoritesForm(object):
 "\n"
 "\n"
 "")
+        #DBHelper.getUserInfo(DBHelper,2)
         self.label_added_books.setAlignment(QtCore.Qt.AlignCenter)
         self.label_added_books.setObjectName("label_added_books")
         self.gridLayout_2.addWidget(self.label_added_books, 1, 0, 1, 1)
@@ -310,23 +322,24 @@ class Ui_FavoritesForm(object):
         self.retranslateUi(FavoritesForm)
         QtCore.QMetaObject.connectSlotsByName(FavoritesForm)
 
+
+
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_9.setText(_translate("MainWindow", "My Favorites"))
+        self.label_9.setText(_translate("MainWindow", "ONUR SERCAN YILMAZ's Favorites "))
+
         __sortingEnabled = self.list_favBooks.isSortingEnabled()
         self.list_favBooks.setSortingEnabled(False)
-        item = self.list_favBooks.item(0)
-        item.setText(_translate("MainWindow", "New ItemNew ItemNew ItemNew ItemNew ItemNew ItemNew ItemNew ItemNew Item"))
-        item = self.list_favBooks.item(1)
-        item.setText(_translate("MainWindow", "New Item"))
-        item = self.list_favBooks.item(2)
-        item.setText(_translate("MainWindow", "New Item"))
+
         self.list_favBooks.setSortingEnabled(__sortingEnabled)
         self.label_added_books.setText(_translate("MainWindow", "Added Books"))
         self.label_added_tvSeries.setText(_translate("MainWindow", "Added TV Series"))
 
 import source
+
 class MyWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)

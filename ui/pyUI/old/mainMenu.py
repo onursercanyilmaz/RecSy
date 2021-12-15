@@ -5,13 +5,10 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-import PySide2
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore, QtWidgets
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.taskBar import TaskBarManagement
 
 
 
@@ -280,8 +277,6 @@ class Ui_MainForm(object):
         self.label_2.setText(_translate("MainForm", "Would you like to "))
         self.label_3.setText(_translate("MainForm", "read or watch?"))
 
-
-import source
 
 if __name__ == "__main__":
     import sys

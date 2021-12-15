@@ -6,12 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QPoint
 
 from PyQt5.QtWidgets import QMainWindow
 
-from ui.pyUI.taskBar import TaskBarManagement
+from models.taskBar import TaskBarManagement
 
 
 class Ui_MainMenu(object):
@@ -24,6 +24,8 @@ class Ui_MainMenu(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidgetMainMenu)
         self.verticalLayout.setObjectName("verticalLayout")
         self.mainFrame = QtWidgets.QFrame(self.centralwidgetMainMenu)
+
+
         self.mainFrame.setStyleSheet("QFrame{background:#300331;\n"
 "border-style: solid;\n"
 "  border-color: red;\n"
