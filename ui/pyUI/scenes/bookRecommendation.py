@@ -287,6 +287,8 @@ class Ui_BookRecommendationForm(object):
         item.setText(_translate("MainWindow", "New Item"))
         item = self.list_bookRecommendations.item(4)
         item.setText(_translate("MainWindow", "New Item"))
+
+
         self.list_bookRecommendations.setSortingEnabled(__sortingEnabled)
 
 import source

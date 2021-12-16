@@ -18,7 +18,7 @@ class Ui_ChooseBookForm(object):
     db = DBHelper()
     def setupUi(self, ChooseBookForm):
         ChooseBookForm.setObjectName("MainWindow")
-        ChooseBookForm.resize(1200, 675)
+        ChooseBookForm.resize(1200, 800)
         ChooseBookForm.move(0,150)
 
 
@@ -216,7 +216,7 @@ class Ui_ChooseBookForm(object):
         self.comboBox_Books.setMaximumWidth(1800)
         self.comboBox_Books.setMaximumHeight(300)
         self.comboBox_Books.setLayoutDirection(QtCore.Qt.LeftToRight)
-        DBHelper.loadBooksToComboBox(DBHelper,self.comboBox_Books)
+
         self.comboBox_Books.setStyleSheet("color:white;\n"
 "background:#300331;\n"
 "font-size:30px;\n"
@@ -297,7 +297,7 @@ class Ui_ChooseBookForm(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_10.setText(_translate("MainWindow", "Books"))
-        self.label_4.setText(_translate("MainWindow", "Plsease select your"))
+        self.label_4.setText(_translate("MainWindow", "Please select your"))
         self.label_5.setText(_translate("MainWindow", "favorite book!"))
 
         self.btnSelect.setText(_translate("MainWindow", "Select"))
