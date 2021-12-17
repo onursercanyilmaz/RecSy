@@ -11,15 +11,17 @@ import sqlite3
 import sys
 
 import pandas as pd
+import re
 from PyQt5 import QtCore,QtWidgets
 from PyQt5.QtCore import QPoint, Qt, QTimer, QSize
-from PyQt5.QtGui import QColor, QMovie
+from PyQt5.QtGui import QColor, QMovie, QIcon
 from PyQt5.QtWidgets import *
 
 
 from models import recommender
 from models.dbHelper import DBHelper
-from ui.pyUI.scenes import login, signUp
+from models.user import *
+from ui.pyUI.scenes import login, signUp, favorites
 from ui.pyUI.scenes.bookRecommendation import Ui_BookRecommendationForm
 from ui.pyUI.scenes.chooseBook import Ui_ChooseBookForm
 from ui.pyUI.scenes.chooseTvSeries import Ui_ChooseTVSeriesForm
@@ -32,7 +34,9 @@ from ui.pyUI.scenes.tvSeriesRecommendation import Ui_TvSeriesRecommendationForm
 counter = 0
 df_Books = pd.read_csv('C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\ml\df_books.csv')
 df_TVSeries = pd.read_csv('C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\ml\df_tvSeries.csv')
-recommendedBooks = {}
+username = ""
+id = 0
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
 
 # YOUR APPLICATION
@@ -46,7 +50,9 @@ class Login(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.oldPos = self.pos()
+
         self.show()
+
 
         self.ui.btnDirectSignUp.clicked.connect(self.directToSignUp)
         self.ui.btnLogin.clicked.connect(self.loginCheck)
@@ -66,22 +72,37 @@ class Login(QMainWindow):
 
     def loginCheck(self):
         print("login button clicked")
-        username = self.ui.lineEdit_Username.text()
-        password = self.ui.lineEdit_Password.text()
+        self.username = self.ui.lineEdit_Username.text()
+        self.password = self.ui.lineEdit_Password.text()
 
         connection = sqlite3.connect("C:/Users/onursercanyilmaz/Documents/GitHub/RecSy/db/RESCSYdb.db")
 
-        result = connection.execute('''SELECT * FROM users WHERE username=? and password=?''', (username, password))
+        result = connection.execute('''SELECT * FROM users WHERE username=? and password=?''', (self.username, self.password))
+        user = result.fetchall()
 
-        if ((len(result.fetchall()) > 0)):
+        if ((len(user) > 0)):
             print("USER FOUND")
+            userId = user[0][0]
+            userName = user[0][1]
+            userMail = user[0][3]
+            global id
+            id = userId
+            global username
+            username = userName
             self.mainScene = MainMenu()
             self.mainScene.show()
             self.close()
         else:
             print("USER NOT FOUND")
-            self.msgBox = QMessageBox.warning(self.ui.loginFrame, "WARNING", "Your Password INCORRECT!")
-            self.msgBox.execute()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Invalid Information")
+            msg.setInformativeText('Your username or password is WRONG!')
+            msg.setWindowTitle("Error")
+            msg.setMinimumSize(400,100)
+            msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+            msg.exec_()
+
 
 
 class SignUp(QMainWindow):
@@ -96,6 +117,7 @@ class SignUp(QMainWindow):
         self.show()
 
         self.ui.btnDirectLogin.clicked.connect(self.directToLogin)
+        self.ui.btnSignUp.clicked.connect(self.register)
 
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
@@ -111,13 +133,74 @@ class SignUp(QMainWindow):
         self.close()
 
 
+    global regex
+    def check(self,email):
+        if (re.search(regex, email)):
+            return True
+        else:
+            return  False
+
+    def register(self):
+        print("sign up button clicked")
+        self.username = self.ui.lineEdit_Username.text()
+        self.password = self.ui.lineEdit_Password.text()
+        self.email = self.ui.lineEdit_Email.text()
+
+        if self.check(self.email):
+            conn = sqlite3.connect('C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\db\RESCSYdb.db')
+            self.result = conn.execute('''SELECT username,email FROM users WHERE username=? or email=?''',(self.username,self.email))
+
+
+
+            if len(self.result.fetchall())>0:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Invalid Information")
+                msg.setInformativeText('Username or email has Already Taken!')
+                msg.setWindowTitle("Error")
+                msg.setMinimumSize(400, 100)
+                msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+                msg.exec_()
+
+            else:
+                conn.execute('''INSERT INTO users(username,password,email) VALUES(?,?,?)''', (self.username, self.password, self.email))
+                conn.commit()
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.NoIcon)
+                msg.setText("Signed Up Successfully!")
+                msg.setInformativeText('You can login.')
+                msg.setWindowTitle("Successfull Process!")
+                msg.setMinimumSize(400, 100)
+                msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+                msg.exec_()
+
+            conn.close()
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("EMAIL INVALID")
+            msg.setInformativeText('Please enter a real mail address!')
+            msg.setWindowTitle("Error")
+            msg.setMinimumSize(400, 100)
+            msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+            msg.exec_()
+
+
+
+
+
+
 class ChooseBook(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_ChooseBookForm()
         self.ui.setupUi(self)
 
+
+
         DBHelper.loadBooksToComboBox(DBHelper, self.ui.comboBox_Books)
+
+
 
 
         ## REMOVE TITLE BAR
@@ -126,11 +209,9 @@ class ChooseBook(QMainWindow):
         self.oldPos = self.pos()
         self.show()
 
-        self.ui.btnBack.clicked.connect(self.directToHome),
-
-
-
+        self.ui.btnBack.clicked.connect(self.directToHome)
         self.ui.btnSelect.clicked.connect(self.selectBook)
+
 
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
@@ -172,9 +253,6 @@ class ChooseBook(QMainWindow):
         self.bookInfo = self.currentSelected.split(' -- ')
         self.bookName = self.bookInfo[0]
         return  self.bookName
-
-
-
 
 class ChooseTVSeries(QMainWindow):
     def __init__(self):
@@ -226,6 +304,10 @@ class Favorites(QMainWindow):
 
         self.ui.btnGoHome.clicked.connect(self.directToHome)
 
+
+        global username
+        self.ui.label_9.setText(username+"'s Favorites")
+
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
 
@@ -239,9 +321,17 @@ class Favorites(QMainWindow):
         self.main.show()
         self.close()
 
+    def loadFavoriteBooks(self):
+        pass
+
+    def loadFavoriteTvSeries(self):
+        pass
+
 
 class MainMenu(QMainWindow):
     def __init__(self):
+
+
         QMainWindow.__init__(self)
         self.ui = Ui_MainMenu()
         self.ui.setupUi(self)
@@ -251,11 +341,13 @@ class MainMenu(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.oldPos = self.pos()
 
+
         self.show()
 
         self.ui.btnChooseBookCategory.clicked.connect(self.directToChooseBook)
         self.ui.btnChooseMovieCategory.clicked.connect(self.directToChooseTVSeries)
         self.ui.btnGoProfile_2.clicked.connect(self.directToFavorites)
+
 
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
@@ -295,6 +387,9 @@ class BookRecommendation(QMainWindow):
         self.oldPos = self.pos()
         self.show()
 
+        self.ui.btnGoHome.clicked.connect(self.directToHome)
+        self.ui.btnAddFav.clicked.connect(self.addToFavorites)
+
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
 
@@ -302,6 +397,45 @@ class BookRecommendation(QMainWindow):
         delta = QPoint(event.globalPos() - self.oldPos)
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.oldPos = event.globalPos()
+
+    def directToHome(self):
+        self.main = MainMenu()
+        self.main.show()
+        self.close()
+
+    def chooseFavorites(self):
+        self.checkedItems=[]
+        for index in range(self.ui.list_bookRecommendations.count()):
+            if self.ui.list_bookRecommendations.item(index).checkState() == Qt.Checked:
+                self.checkedItems.append(self.ui.list_bookRecommendations.item(index))
+        print(self.checkedItems[0].text())
+        return self.checkedItems
+
+    def addToFavorites(self):
+        global id
+        for i in self.chooseFavorites():
+            self.bookWithoutSimilarity = i.text().split(" -- ")
+            self.bookName = self.bookWithoutSimilarity[0]
+            self.bookAuthor = self.bookWithoutSimilarity[1]
+
+            self.bookName = self.bookName.replace('"' , '' )
+            self.bookName = self.bookName.replace("#" , '')
+            self.bookName = self.bookName.replace("`", '')
+
+            self.bookAuthor = self.bookAuthor.replace('"', '')
+            self.bookAuthor = self.bookAuthor.replace("#", '')
+            self.bookAuthor = self.bookAuthor.replace("`", '')
+
+
+            self.bookId = DBHelper.getBookIdByTitleAndAuthor(DBHelper,self.bookName,self.bookAuthor)
+            print(self.bookId)
+            #self.theBook = self.bookName + " -- " + self.bookAuthor
+
+            DBHelper.addFavoriteBook(DBHelper,int(id),int(self.bookId))
+
+
+
+
 
 
 
@@ -418,7 +552,7 @@ class LoadingScreen(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = ChooseBook()
+    window = Login()
     # app.setWindowIcon(QIcon("RecSy.ico"))
 
     sys.exit(app.exec_())

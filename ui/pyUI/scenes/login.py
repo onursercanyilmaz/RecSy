@@ -8,9 +8,11 @@
 import sqlite3
 
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5 import QtCore,QtWidgets
 
 from models.user import *
 from models.dbHelper import DBHelper
+from models.taskBar import TaskBarManagement
 from PyQt5.QtWidgets import QMainWindow
 from ui.pyUI.scenes import mainMenu, screenManager
 
@@ -229,7 +231,7 @@ class Ui_LoginForm(object):
         self.btnLogin.setText(_translate("LoginForm", "Login"))
         self.btnDirectSignUp.setText(_translate("LoginForm", "Don\'t you have an account?"))
         self.lineEdit_Username.setPlaceholderText(_translate("LoginForm", "Username"))
-        self.lineEdit_Password.setText(_translate("LoginForm", "abcd"))
+
         self.lineEdit_Password.setPlaceholderText(_translate("LoginForm", "Password"))
 
     """def loginCheck(self):
@@ -266,7 +268,6 @@ class MyWindow(QMainWindow):
         ## REMOVE TITLE BAR
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-
 
 
         self.oldPos = self.pos()

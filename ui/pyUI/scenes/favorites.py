@@ -204,7 +204,7 @@ class Ui_FavoritesForm(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.list_favBooks = QtWidgets.QListWidget(self.gridLayoutWidget)
         self.list_favBooks.setMinimumSize(QtCore.QSize(0, 300))
-        DBHelper.loadFavoriteBooks(DBHelper,self.list_favBooks)
+
         self.list_favBooks.setStyleSheet("QListWidget{\n"
 "color:white;\n"
 "font-size:30px;\n"

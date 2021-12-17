@@ -42,6 +42,7 @@ class User:
         conn.close()
         return username
 
+
     def loginCheck(self,lineEdit_Username,lineEdit_Password,loginFrame):
         print("login button clicked")
         username = lineEdit_Username.text()
@@ -53,8 +54,8 @@ class User:
 
         if ((len(result.fetchall()) > 0)):
             print("USER FOUND")
-            mainScene = mainMenu.MyWindow()
-            uik = mainMenu.MyWindow().ui
+            mainScene = screenManager.MainMenu()
+            uik = mainScene.ui
             uik.setupUi(mainScene)
             mainScene.show()
             loginFrame.hide()
