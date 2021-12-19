@@ -167,6 +167,7 @@ class Ui_MainMenu(object):
         self.label_9.setText("")
         self.label_9.setObjectName("label_9")
         self.horizontalLayout_5.addWidget(self.label_9)
+
         self.btnGoProfile_2 = QtWidgets.QToolButton(self.BooksLogo)
         self.btnGoProfile_2.setMinimumSize(QtCore.QSize(60, 60))
         self.btnGoProfile_2.setStyleSheet("QToolButton{\n"
@@ -184,7 +185,29 @@ class Ui_MainMenu(object):
 "background: #37AED4;}")
         self.btnGoProfile_2.setText("")
         self.btnGoProfile_2.setObjectName("btnGoProfile_2")
+
+        self.btnLogout = QtWidgets.QToolButton(self.BooksLogo)
+        self.btnLogout.setMinimumSize(QtCore.QSize(60, 60))
+        self.btnLogout.setStyleSheet("QToolButton{\n"
+                                          
+                                          "background:transparent;\n"
+                                          "image: url(:/logout/img/logOut.png);\n"
+                                          "}\n"
+                                          "QToolButton:hover {\n"
+                                          "background: #920C7C;\n"
+                                          "border: solid 1px;\n"
+                                          "border-radius:25;\n"
+                                          "}\n"
+                                          "\n"
+                                          "QToolButton:pressed {\n"
+                                          "border-style: inset;\n"
+                                          "background: #37AED4;}")
+        self.btnLogout.setText("")
+        self.btnLogout.setObjectName("btnLogout")
+
+
         self.horizontalLayout_5.addWidget(self.btnGoProfile_2)
+        self.horizontalLayout_5.addWidget(self.btnLogout)
         self.horizontalLayout_6.addLayout(self.horizontalLayout_5)
         self.barLogo.addWidget(self.BooksLogo)
         self.layoutWidget_2 = QtWidgets.QWidget(self.splitter)

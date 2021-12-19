@@ -232,7 +232,7 @@ class Ui_ChooseTVSeriesForm(object):
         self.comboBox_TvSeries.setEditable(True)
         self.comboBox_TvSeries.setFrame(True)
         self.comboBox_TvSeries.setObjectName("comboBox_TvSeries")
-        DBHelper.loadToTVSeriesComboBox(DBHelper, self.comboBox_TvSeries)
+        #DBHelper.loadToTVSeriesComboBox(DBHelper, self.comboBox_TvSeries)
         self.WholeBody_2.addWidget(self.body_2)
         self.bottomBar_2 = QtWidgets.QSplitter(self.layoutWidget_5)
         self.bottomBar_2.setMinimumSize(QtCore.QSize(0, 50))

@@ -199,29 +199,15 @@ class Ui_TvSeriesRecommendationForm(object):
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
-        self.listWidget = QtWidgets.QListWidget(self.body)
-        self.listWidget.setStyleSheet("QListWidget{\n"
+        self.list_SeriesRecommendations = QtWidgets.QListWidget(self.body)
+        self.list_SeriesRecommendations.setStyleSheet("QListWidget{\n"
 "color:white;\n"
 "font-size:30px;\n"
 "font-family:Google Sans;\n"
 "background:#300331;\n"
 "}")
-        self.listWidget.setObjectName("listWidget")
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        item.setCheckState(QtCore.Qt.Unchecked)
-        self.listWidget.addItem(item)
+        self.list_SeriesRecommendations.setObjectName("self.list_SeriesRecommendations")
+
         self.WholeBody.addWidget(self.body)
         self.bottomBar = QtWidgets.QSplitter(self.layoutWidget_2)
         self.bottomBar.setMinimumSize(QtCore.QSize(0, 50))
@@ -230,8 +216,8 @@ class Ui_TvSeriesRecommendationForm(object):
 "}")
         self.bottomBar.setOrientation(QtCore.Qt.Horizontal)
         self.bottomBar.setObjectName("bottomBar")
-        self.toolButton_4 = QtWidgets.QToolButton(self.bottomBar)
-        self.toolButton_4.setStyleSheet("QToolButton{\n"
+        self.btnBack = QtWidgets.QToolButton(self.bottomBar)
+        self.btnBack.setStyleSheet("QToolButton{\n"
 "background:transparent;\n"
 "image: url(:/home/img/home.png);\n"
 "}\n"
@@ -244,10 +230,10 @@ class Ui_TvSeriesRecommendationForm(object):
 "QToolButton:pressed {\n"
 "border-style: inset;\n"
 "background: #37AED4;}")
-        self.toolButton_4.setText("")
-        self.toolButton_4.setObjectName("toolButton_4")
-        self.toolButton_5 = QtWidgets.QToolButton(self.bottomBar)
-        self.toolButton_5.setStyleSheet("QToolButton{\n"
+        self.btnBack.setText("")
+        self.btnBack.setObjectName("btnBack")
+        self.btnAddFavorite = QtWidgets.QToolButton(self.bottomBar)
+        self.btnAddFavorite.setStyleSheet("QToolButton{\n"
 "background:transparent;\n"
 "image: url(:/addFavorite/img/addFavorite.png);\n"
 "}\n"
@@ -260,15 +246,15 @@ class Ui_TvSeriesRecommendationForm(object):
 "QToolButton:pressed {\n"
 "border-style: inset;\n"
 "background: #37AED4;}")
-        self.toolButton_5.setText("")
-        self.toolButton_5.setObjectName("toolButton_5")
+        self.btnAddFavorite.setText("")
+        self.btnAddFavorite.setObjectName("btnAddFavorite")
         self.WholeBody.addWidget(self.bottomBar)
         self.horizontalLayout.addWidget(self.splitter)
         self.verticalLayout.addWidget(self.tvSeriesRecommendationsFrame)
         TvSeriesRecommendationForm.setCentralWidget(self.centralwidgetTvSeriesRecommendations)
 
         self.retranslateUi(TvSeriesRecommendationForm)
-        self.listWidget.setCurrentRow(-1)
+        self.list_SeriesRecommendations.setCurrentRow(-1)
         QtCore.QMetaObject.connectSlotsByName(TvSeriesRecommendationForm)
 
     def retranslateUi(self, MainWindow):
@@ -277,19 +263,10 @@ class Ui_TvSeriesRecommendationForm(object):
         self.label_9.setText(_translate("MainWindow", "TV Series"))
         self.label_2.setText(_translate("MainWindow", "Here is top 5"))
         self.label_3.setText(_translate("MainWindow", "recommendations to you!"))
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
-        item.setText(_translate("MainWindow", "New Item"))
-        item = self.listWidget.item(1)
-        item.setText(_translate("MainWindow", "New Item"))
-        item = self.listWidget.item(2)
-        item.setText(_translate("MainWindow", "New Item"))
-        item = self.listWidget.item(3)
-        item.setText(_translate("MainWindow", "New Item"))
-        item = self.listWidget.item(4)
-        item.setText(_translate("MainWindow", "New Item"))
-        self.listWidget.setSortingEnabled(__sortingEnabled)
+        __sortingEnabled = self.list_SeriesRecommendations.isSortingEnabled()
+        self.list_SeriesRecommendations.setSortingEnabled(False)
+
+        self.list_SeriesRecommendations.setSortingEnabled(__sortingEnabled)
 
 import source
 class MyWindow(QMainWindow):

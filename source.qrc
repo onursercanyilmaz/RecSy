@@ -2,6 +2,9 @@
   <qresource prefix="logo">
     <file>img/RecSy.png</file>
   </qresource>
+  <qresource prefix="logout">
+    <file>img/logOut.png</file>
+  </qresource>
   <qresource prefix="favoritesPerson">
     <file>img/favorites_person.png</file>
   </qresource>

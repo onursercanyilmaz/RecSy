@@ -92,16 +92,17 @@ class Login(QMainWindow):
             self.mainScene = MainMenu()
             self.mainScene.show()
             self.close()
+
         else:
-            print("USER NOT FOUND")
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
-            msg.setText("Invalid Information")
+            msg.setText("ACCESS DENIED!")
             msg.setInformativeText('Your username or password is WRONG!')
             msg.setWindowTitle("Error")
-            msg.setMinimumSize(400,100)
+            msg.setMinimumSize(400, 100)
             msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
             msg.exec_()
+
 
 
 
@@ -196,12 +197,7 @@ class ChooseBook(QMainWindow):
         self.ui = Ui_ChooseBookForm()
         self.ui.setupUi(self)
 
-
-
         DBHelper.loadBooksToComboBox(DBHelper, self.ui.comboBox_Books)
-
-
-
 
         ## REMOVE TITLE BAR
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -254,6 +250,8 @@ class ChooseBook(QMainWindow):
         self.bookName = self.bookInfo[0]
         return  self.bookName
 
+
+
 class ChooseTVSeries(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -266,8 +264,9 @@ class ChooseTVSeries(QMainWindow):
         self.oldPos = self.pos()
 
         self.show()
-
+        DBHelper.loadToTVSeriesComboBox(DBHelper, self.ui.comboBox_TvSeries)
         self.ui.btnBack.clicked.connect(self.directToHome)
+        self.ui.btnSelect.clicked.connect(self.selectTVSeries)
 
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
@@ -288,6 +287,36 @@ class ChooseTVSeries(QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
+    def selectTVSeries(self):
+
+        self.seriesName = self.getTVSeriesName()
+        self.recommendedSeries = recommender.tvSeriesRecommendations(self.seriesName, df_TVSeries)
+
+
+        self.seriesRecs = TVSeriesRecommendation()
+
+        for i in range(0,5):
+            self.item = QtWidgets.QListWidgetItem()
+            self.item.setCheckState(QtCore.Qt.Unchecked)
+
+            #self.item = self.seriesRecs.ui.list_SeriesRecommendations.item(i)
+
+            self.item.setText(self.recommendedSeries['item'+str(i+1)]['title'] + " -- Similarity: " + str(self.recommendedSeries['item'+str(i+1)]['similarity']))
+            self.seriesRecs.ui.list_SeriesRecommendations.addItem(self.item)
+
+
+        self.seriesRecs.show()
+        self.close()
+
+
+    def getTVSeriesName(self):
+        self.currentSelected = self.ui.comboBox_TvSeries.currentText()
+        return self.currentSelected
+
+
+
+
+
 
 class Favorites(QMainWindow):
     def __init__(self):
@@ -303,10 +332,17 @@ class Favorites(QMainWindow):
         self.show()
 
         self.ui.btnGoHome.clicked.connect(self.directToHome)
+        self.ui.btnRemoveFavBook.clicked.connect(self.removeBooksFromFavorites)
+        self.ui.btnRemoveFavTvSeries.clicked.connect(self.removeSeriesFromFavorites)
+
+
+        self.loadFavBooks()
+        self.loadFavTvSeries()
 
 
         global username
         self.ui.label_9.setText(username+"'s Favorites")
+
 
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
@@ -321,11 +357,55 @@ class Favorites(QMainWindow):
         self.main.show()
         self.close()
 
-    def loadFavoriteBooks(self):
-        pass
+    def loadFavBooks(self):
+        self.ui.list_favBooks.clear()
+        global id
+        DBHelper.loadFavoriteBooks(DBHelper, self.ui.list_favBooks, id)
 
-    def loadFavoriteTvSeries(self):
-        pass
+    def loadFavTvSeries(self):
+        self.ui.list_favtvSeries.clear()
+        global id
+        DBHelper.loadFavoriteTVSeries(DBHelper, self.ui.list_favtvSeries, id)
+
+    def checkedFavorites(self,favList):
+        self.checkedItems=[]
+        for index in range(favList.count()):
+            if favList.item(index).checkState() == Qt.Checked:
+                self.checkedItems.append(favList.item(index))
+        return self.checkedItems
+
+    def showMessage(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.NoIcon)
+        msg.setText("Removed Successfully!")
+        msg.setInformativeText('')
+        msg.setWindowTitle("Process Completed!")
+        msg.setMinimumSize(400, 100)
+        msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+        msg.exec_()
+
+    def removeBooksFromFavorites(self):
+        global id #for user_id
+        for i in self.checkedFavorites(self.ui.list_favBooks):
+            self.bookInfo = i.text().split(" -- ")
+            self.bookName = self.bookInfo[0]
+            self.bookAuthor = self.bookInfo[1]
+            self.bookId = DBHelper.getBookIdByTitleAndAuthor(DBHelper,self.bookName,self.bookAuthor)
+
+            DBHelper.removeFavoriteBook(DBHelper,self.bookId,id)
+        self.loadFavBooks()
+        self.showMessage()
+
+    def removeSeriesFromFavorites(self):
+        global id #for user_id
+        for i in self.checkedFavorites(self.ui.list_favtvSeries):
+            self.seriesName = i.text()
+
+            self.seriesId = DBHelper.getTVSeriesIdByTitle(DBHelper,self.seriesName)
+
+            DBHelper.removeFavoriteTVSeries(DBHelper,self.seriesId,id)
+        self.loadFavTvSeries()
+        self.showMessage()
 
 
 class MainMenu(QMainWindow):
@@ -347,6 +427,7 @@ class MainMenu(QMainWindow):
         self.ui.btnChooseBookCategory.clicked.connect(self.directToChooseBook)
         self.ui.btnChooseMovieCategory.clicked.connect(self.directToChooseTVSeries)
         self.ui.btnGoProfile_2.clicked.connect(self.directToFavorites)
+        self.ui.btnLogout.clicked.connect(self.logOut)
 
 
     def mousePressEvent(self, event):
@@ -372,6 +453,11 @@ class MainMenu(QMainWindow):
         self.directFavorites = Favorites()
         self.directFavorites.show()
         self.close()
+    def logOut(self):
+        self.directLogin = Login()
+        self.directLogin.show()
+        self.close()
+
 
 
 class BookRecommendation(QMainWindow):
@@ -431,11 +517,18 @@ class BookRecommendation(QMainWindow):
             print(self.bookId)
             #self.theBook = self.bookName + " -- " + self.bookAuthor
 
-            DBHelper.addFavoriteBook(DBHelper,int(id),int(self.bookId))
+            DBHelper.addFavoriteBook(DBHelper,id,self.bookId)
+        self.showMessage()
 
-
-
-
+    def showMessage(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.NoIcon)
+        msg.setText("Books Added Successfully!")
+        msg.setInformativeText('')
+        msg.setWindowTitle("Process Completed!")
+        msg.setMinimumSize(400, 100)
+        msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+        msg.exec_()
 
 
 
@@ -453,6 +546,10 @@ class TVSeriesRecommendation(QMainWindow):
         self.oldPos = self.pos()
         self.show()
 
+
+        self.ui.btnBack.clicked.connect(self.directToHome)
+        self.ui.btnAddFavorite.clicked.connect(self.addToFavorites)
+
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
 
@@ -460,6 +557,41 @@ class TVSeriesRecommendation(QMainWindow):
         delta = QPoint(event.globalPos() - self.oldPos)
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.oldPos = event.globalPos()
+
+    def directToHome(self):
+        self.main = MainMenu()
+        self.main.show()
+        self.close()
+
+    def chooseFavorites(self):
+        self.checkedItems=[]
+        for index in range(self.ui.list_SeriesRecommendations.count()):
+            if self.ui.list_SeriesRecommendations.item(index).checkState() == Qt.Checked:
+                self.checkedItems.append(self.ui.list_SeriesRecommendations.item(index))
+        print(self.checkedItems[0].text())
+        return self.checkedItems
+
+    def addToFavorites(self):
+        global id
+        for i in self.chooseFavorites():
+            self.seriesWithoutSimilarity = i.text().split(" -- ")
+            self.seriesName = self.seriesWithoutSimilarity[0]
+            print(self.seriesName)
+            self.seriesId = DBHelper.getTVSeriesIdByTitle(DBHelper,self.seriesName)
+            print(self.seriesId)
+
+            DBHelper.addFavoriteTVSeries(DBHelper,id,self.seriesId)
+        self.showMessage()
+
+    def showMessage(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.NoIcon)
+        msg.setText("TV Series Added Successfully!")
+        msg.setInformativeText('')
+        msg.setWindowTitle("Process Completed!")
+        msg.setMinimumSize(400, 100)
+        msg.setWindowIcon(QIcon("C:/Users\onursercanyilmaz\Documents\GitHub\RecSy\img\RecSy.png"))
+        msg.exec_()
 
 
 # SPLASH SCREEN
