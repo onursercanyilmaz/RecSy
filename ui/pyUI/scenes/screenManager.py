@@ -684,7 +684,7 @@ class LoadingScreen(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = Login()
+    window = SplashScreen()
     # app.setWindowIcon(QIcon("RecSy.ico"))
 
     sys.exit(app.exec_())
